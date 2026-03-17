@@ -5,6 +5,7 @@ const seasonRoutes = require("./routes/seasonRoutes");
 const playerRoutes = require("./routes/playerRoutes");
 const rewardRoutes = require("./routes/rewardRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const gameRoutes = require("./routes/gameRoutes");
 const initDb = require("./config/initDb");
 
 const app = express();
@@ -28,6 +29,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/seasons", seasonRoutes);
 app.use("/api/players", playerRoutes);
 app.use("/api/rewards", rewardRoutes);
+app.use("/api/game", gameRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.listen(PORT, () => {

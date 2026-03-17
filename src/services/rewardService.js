@@ -5,14 +5,21 @@ const {
   updatePlayerLoginStreak
 } = require("./playerService");
 
+function getLocalDateString(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 function getYesterdayDateString() {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  return yesterday.toISOString().split("T")[0];
+  return getLocalDateString(yesterday);
 }
 
 async function claimDailyReward(steamId) {
-  const today = new Date().toISOString().split("T")[0];
+  const today = getLocalDateString();
   const yesterday = getYesterdayDateString();
   const rewardType = "daily_login";
   const currentSeason = getCurrentSeason();
